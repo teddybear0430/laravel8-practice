@@ -43,19 +43,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            // フロントエンド用のルーティング設定
             Route::middleware('web')
-                ->namespace($this->namespace, '\Front')
-                ->as('front.')
-                ->group(base_path('routes/front.php'));
-
-            // バックエンド用のルーティング設定
-            // prefixをつけると全てのURLにprefixで指定した文字列が付与されるようになる
-            Route::prefix('admin')
-                ->middleware('web')
-                ->namespace($this->namespace, '\Back')
-                ->as('back.')
-                ->group(base_path('routes/back.php'));
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));
         });
     }
 
