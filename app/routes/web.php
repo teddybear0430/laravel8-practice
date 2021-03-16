@@ -13,5 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// フロント
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
+
+// 管理画面
+Route::middleware(['auth'])->group(function() {
+  Route::get('/admin', [\App\Http\Controllers\Back\DashboardController::class, 'invoke'])->name('dashboard');
+});

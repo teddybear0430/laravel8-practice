@@ -134,6 +134,10 @@ return [
     |
     */
 
+    // サービスプロバイダー・・・サービスコンテナへのサービスの登録を行う。
+    // Laravelではサービスコンテナに登録されているサービスを利用して
+    // アプリケーションの開発を行なっていく。
+    // サービスコンテナ・・・サービス（Laravelが持っている機能）を管理する物
     'providers' => [
 
         /*
@@ -175,6 +179,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 認証機能を実装するためのプロバイダーを登録
+        App\Providers\FortifyServiceProvider::class,
     ],
 
     /*
