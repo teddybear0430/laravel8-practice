@@ -19,5 +19,5 @@ Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])
 
 // 管理画面
 Route::middleware(['auth'])->group(function() {
-  Route::get('/admin', [\App\Http\Controllers\Back\DashboardController::class, 'invoke'])->name('dashboard');
+    Route::get('/admin', [\App\Http\Controllers\Back\DashboardController::class, 'index'])->name('dashboard');
 });
