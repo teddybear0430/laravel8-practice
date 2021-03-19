@@ -13,9 +13,6 @@
           <div class="container px-6 mx-auto flex justify-between items-center">
               <a class="navbar-brand text-3xl" href="/">Laravel CMS</a>
               <nav>
-                  <a href="{{ route('back.dashboard') }}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                    ダッシュボード
-                  </a>
                   <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white" onClick="(function(){
                     document.getElementById('logout-form').submit();
                     return false;

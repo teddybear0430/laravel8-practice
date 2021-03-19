@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class DashboardController extends Controller
 {
@@ -15,6 +16,7 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        return view('back.dashboard');
+        $posts = Post::orderBy('published_at', 'desc')->paginate(10);
+        return view('back.dashboard', compact('posts'));
     }
 }
