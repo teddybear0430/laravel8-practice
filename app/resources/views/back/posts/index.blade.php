@@ -1,27 +1,33 @@
-<?php
-$title = 'ダッシュボード';
-?>
+<?php $title = '投稿一覧'; ?>
 @extends ('back.layouts.base')
  
 @section ('content')
-<div class="card-header">{{ $title }}</div>
-<div class="card-body">
-    @if ($posts->count() <= 0)
-        <p>表示する投稿はありません。</p>
-    @else
-    <div id="post-list">
-        @foreach ($posts as $post)
-        <div class="post">
-          <h2>
-            <a href="{{ route('post.show', ['id' => $post->id]) }}">{{ $post->title }}</a>
-        </h2>
-          <div class="published-at">{{ $post->published_at->format('Y年m月d日') }}</div>
-        </div>
-        @endforeach
+    <h1 class="text-2xl">{{ $title }}</h1>
+    <div class="card-body">
+        @if (!$posts)
+            <p>表示する投稿はありません。</p>
+        @else
+            <table class="table-auto">
+                <tr>
+                    <th class="px-4 py-2">タイトル</th>
+                    <th class="px-4 py-2">公開状態</th>
+                    <th class="px-4 py-2">公開日</th>
+                    <th class="px-4 py-2">編集</th>
+                </tr>
+                <tbody>
+                    @foreach ($posts as $post)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $post->title }}</td>
+                        <td class="border px-4 py-2">{{ $post->is_public ? '公開' : '非公開' }}</td>
+                        <td class="border px-4 py-2">{{ $post->published_at->format('Y年/m月/d日') }}</td>
+                        <td class="border px-4 py-2">編集する</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="mt-5 d-flex justify-content-center">
+                {{ $posts->links() }}
+            </div>
+        @endif
     </div>
-    <div class="d-flex justify-content-center">
-        {{ $posts->links() }}
-    </div>
-    @endif
-</div>
 @endsection
