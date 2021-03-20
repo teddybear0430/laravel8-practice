@@ -2,6 +2,7 @@
 @extends ('back.layouts.base')
  
 @section ('content')
+    <x-back.alert />
     <h1 class="text-2xl">{{ $title }}</h1>
     <div class="card-body">
         @if (!$posts)

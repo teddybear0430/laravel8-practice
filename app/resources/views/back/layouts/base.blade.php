@@ -33,7 +33,7 @@
 <script src="{{ asset('/js/editor-init.js') }}"></script>
 @endif
 
-@if (Request::is('admin'))
+@if (Request::is('admin') || Request::is('admin/posts'))
 <script>
 const closeBtn = document.getElementById('close-btn');
 const alertDiv = document.getElementById('alert');

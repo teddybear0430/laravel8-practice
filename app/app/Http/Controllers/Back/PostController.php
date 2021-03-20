@@ -87,13 +87,16 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 記事の削除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+      $post = Post::where('id', $id)->findOrFail($id);
+      $post->delete();
+
+      return redirect()->route('posts.index')->with('flash_message', '投稿を削除しました');
     }
 }
