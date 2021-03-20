@@ -29,5 +29,18 @@
         </div>
     </div>
 </body>
+@if (Request::is('admin/posts/create'))
 <script src="{{ asset('/js/editor-init.js') }}"></script>
+@endif
+
+@if (Request::is('admin'))
+<script>
+const closeBtn = document.getElementById('close-btn');
+const alertDiv = document.getElementById('alert');
+
+closeBtn.addEventListener('click', () => {
+  alertDiv.style.display = 'none';
+});
+</script>
+@endif
 </html>

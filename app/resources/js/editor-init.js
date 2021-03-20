@@ -1,5 +1,17 @@
 import EasyMDE from 'easyMDE';
 
-const easyMDE = new EasyMDE({
-  element: document.getElementById('my-text-area')
+window.addEventListener('DOMContentLoaded', () => {
+  const myTextArea = document.getElementById('my-text-area');
+
+  const easyMDE = new EasyMDE({
+    element: myTextArea
+  });
+
+  // エディターのテキストを隠し要素のテキストエリアにコピーする
+  const hiddenEditor = document.getElementById('hidden-editor');
+
+  easyMDE.codemirror.on('change', () => {
+    const body = easyMDE.value();
+    hiddenEditor.textContent = body;
+  });
 });

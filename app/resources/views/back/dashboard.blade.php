@@ -2,6 +2,7 @@
 @extends ('back.layouts.base')
  
 @section ('content')
+    <x-back.alert />
     <div class="container mx-auto p-2 border-2 border-gray-400 rounded-md">
         <h1 class="text-2xl">{{ $title }}</h1>
         <div class="container">

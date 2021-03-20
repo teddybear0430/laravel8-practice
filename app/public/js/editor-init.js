@@ -19282,8 +19282,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var easyMDE__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! easyMDE */ "./node_modules/easyMDE/src/js/easymde.js");
 /* harmony import */ var easyMDE__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(easyMDE__WEBPACK_IMPORTED_MODULE_0__);
 
-var easyMDE = new (easyMDE__WEBPACK_IMPORTED_MODULE_0___default())({
-  element: document.getElementById('my-text-area')
+window.addEventListener('DOMContentLoaded', function () {
+  var myTextArea = document.getElementById('my-text-area');
+  var easyMDE = new (easyMDE__WEBPACK_IMPORTED_MODULE_0___default())({
+    element: myTextArea
+  }); // エディターのテキストを隠し要素のテキストエリアにコピーする
+
+  var hiddenEditor = document.getElementById('hidden-editor');
+  easyMDE.codemirror.on('change', function () {
+    var body = easyMDE.value();
+    hiddenEditor.textContent = body;
+  });
 });
 })();
 
