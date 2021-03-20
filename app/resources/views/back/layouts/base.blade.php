@@ -29,7 +29,7 @@
         </div>
     </div>
 </body>
-@if (Request::is('admin/posts/create'))
+@if (Request::is('admin/posts/create') || Request::is('admin/posts/*/edit'))
 <script src="{{ asset('/js/editor-init.js') }}"></script>
 @endif
 

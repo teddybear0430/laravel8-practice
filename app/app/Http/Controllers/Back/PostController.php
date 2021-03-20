@@ -51,37 +51,37 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * 記事の編集処理
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $post = Post::where('id', $id)->findOrFail($id);
+        return view('back.posts.edit', compact('post'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 記事の更新
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, int $id)
     {
-        //
+      $request->validated();
+
+      $old_post = Post::where('id', $id)->findOrFail($id);
+
+      $old_post->title = $request->title;
+      $old_post->published_at = $request->published_at;
+      $old_post->is_public = $request->is_public;
+      $old_post->body = $request->body;
+      $old_post->save();
+
+      return redirect()->route('posts.edit', $old_post)->with('flash_message', '記事を更新しました');
     }
 
     /**

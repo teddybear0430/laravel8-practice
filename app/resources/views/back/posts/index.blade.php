@@ -20,7 +20,9 @@
                         <td class="border px-4 py-2">{{ $post->title }}</td>
                         <td class="border px-4 py-2">{{ $post->is_public ? '公開' : '非公開' }}</td>
                         <td class="border px-4 py-2">{{ $post->published_at->format('Y年/m月/d日') }}</td>
-                        <td class="border px-4 py-2">編集する</td>
+                        <td class="border px-4 py-2">
+                          <a href="{{ route('posts.edit', ['post' => $post->id])}}">編集する</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
