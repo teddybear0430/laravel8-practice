@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 
@@ -38,13 +37,15 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+      // バリデーションの実施
+      $request->validated();
+
       $post = new Post();
 
       $post->title = $request->title;
       $post->published_at = $request->published_at;
       $post->is_public = $request->is_public;
       $post->body = $request->body;
-
       $post->save();
 
       return redirect()->route('dashboard')->with('flash_message', '投稿を保存しました');
@@ -71,6 +72,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, int $id)
     {
+      // バリデーションの実施
       $request->validated();
 
       $old_post = Post::where('id', $id)->findOrFail($id);
