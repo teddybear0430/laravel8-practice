@@ -19,6 +19,9 @@ Route::get('/posts/{id}', [\App\Http\Controllers\PostController::class, 'show'])
 
 // 管理画面
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    // ダッシュボード
     Route::get('/', [\App\Http\Controllers\Back\DashboardController::class, 'index'])->name('admin.home');
-    Route::get('/posts', [\App\Http\Controllers\Back\PostController::class, 'index'])->name('admin.posts');
+
+    // 記事編集に関するルーティング
+    Route::resource('/posts', \App\Http\Controllers\Back\PostController::class)->except('show');
 });

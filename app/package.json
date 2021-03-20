@@ -18,5 +18,7 @@
         "postcss": "^8.2.8",
         "tailwindcss": "^2.0.3"
     },
-    "dependencies": {}
+    "dependencies": {
+        "easymde": "^2.14.0"
+    }
 }

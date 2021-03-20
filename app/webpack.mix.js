@@ -18,3 +18,5 @@ mix.js('resources/js/app.js', 'public/js')
       postCss: [require('tailwindcss')]
     })
     .purgeCss();
+
+mix.js('resources/js/editor-init.js', 'public/js');
