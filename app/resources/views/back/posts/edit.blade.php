@@ -23,7 +23,7 @@
                   </ul>
               </div>
           @endif
-
+          <div>執筆者：{{ $post->user->name }}</div>
           <form method="POST" action="{{ route('posts.update', ['post' => $post->id]) }}">
               @method('PUT')
               @csrf 
