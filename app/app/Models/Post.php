@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 /**
  * App\Models\Post
@@ -42,4 +43,12 @@ class Post extends Model
         'is_public' => 'bool',
         'published_at' => 'datetime'
     ];
+
+    // 投稿に紐づくユーザーを取得
+    // belongsTo・・・従テーブルの複数レコードに対して、
+    // 主テーブルの1つのレコードが紐付けるときに使われる。
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -14,6 +14,7 @@
                     <th class="px-4 py-2">公開状態</th>
                     <th class="px-4 py-2">公開日</th>
                     <th class="px-4 py-2">編集</th>
+                    <th class="px-4 py-2">編集者</th>
                 </tr>
                 <tbody>
                     @foreach ($posts as $post)
@@ -24,6 +25,7 @@
                         <td class="border px-4 py-2">
                           <a href="{{ route('posts.edit', ['post' => $post->id])}}">編集する</a>
                         </td>
+                        <td class="border px-4 py-2">{{ $post->user->name }}</td>
                     </tr>
                     @endforeach
                 </tbody>
