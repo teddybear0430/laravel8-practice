@@ -26,12 +26,13 @@ class PostFactory extends Factory
 
         return [
           'title' => $faker->realText(rand(20, 50)),
-          'body' => $faker->realText(rand(100, 200)),
+          'body' => $faker->realText(rand(100, 20)),
           // trueやfalseを出す確率を操作できる
           'is_public' => $faker->boolean(90),
           'published_at' => $random_date,
           'created_at' => $random_date,
           'updated_at' => $random_date,
+          'user_id' => $faker->numberBetween(1, 3),
         ];
     }
 }
