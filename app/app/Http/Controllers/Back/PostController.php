@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('id')->paginate(10);
+        $posts = Post::with('user')->latest('id')->paginate(10);
         return view('back.posts.index', compact('posts'));
     }
 
