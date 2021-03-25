@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -46,6 +47,7 @@ class PostController extends Controller
       $post->published_at = $request->published_at;
       $post->is_public = $request->is_public;
       $post->body = $request->body;
+      $post->user_id = Auth::id();
       $post->save();
 
       return redirect()->route('dashboard')->with('flash_message', '投稿を保存しました');
