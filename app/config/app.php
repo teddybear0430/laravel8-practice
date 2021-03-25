@@ -181,6 +181,9 @@ return [
 
         // 認証機能を実装するためのプロバイダーを登録
         App\Providers\FortifyServiceProvider::class,
+
+        // laravel-debugbar
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
