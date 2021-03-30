@@ -19,6 +19,12 @@ $title = '投稿一覧';
             <div class="published-at mr-2">{{ $post->published_at->format('Y年m月d日') }}</div>
             <div class="user-name">{{ $post->user->name }}</div>
           </div>
+          <div class="flex">
+            <div>タグ: </div>
+            @foreach ($post->tags as $tag)
+                <div>{{ $tag->name }}</div>
+            @endforeach
+          </div>
           <h2 class="mt-1 mb-1">
             <a href="{{ route('post.show', ['id' => $post->id]) }}">{{ $post->title }}</a>
           </h2>

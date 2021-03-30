@@ -11,6 +11,12 @@ $title = '投稿詳細';
 <div class="card-body">
     <h2>{{ $post->title }}</h2>
     <time>{{ $post->published_at->format('Y年m月d日') }}</time>
+    <div class="flex">
+      <div>タグ: </div>
+      @foreach ($post->tags as $tag)
+      <div>{{ $tag->name }}</div>
+      @endforeach
+    </div>
     <div>{!! nl2br(e($post->body)) !!}</div>
 </div>
 @endsection

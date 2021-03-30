@@ -16,7 +16,7 @@ class PostController extends Controller
       // with・・・n + 1問題を軽減できる（レコードの数だけクエリが発行されてしまうのを防ぐ）
       // リレーションを定義したメソッドを引数に指定する
       // https://readouble.com/laravel/8.x/ja/eloquent-relationships.html
-      $posts = Post::with('user')
+      $posts = Post::with(['user', 'tags'])
                     ->where('is_public', true)
                     ->orderBy('published_at', 'desc')
                     ->paginate(10);

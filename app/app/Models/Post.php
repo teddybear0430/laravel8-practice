@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Tag;
 
 /**
  * App\Models\Post
@@ -27,6 +28,12 @@ use App\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|Tag[] $tags
+ * @property-read int|null $tags_count
+ * @property-read User $user
+ * @method static \Database\Factories\PostFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUserId($value)
  */
 class Post extends Model
 {
@@ -50,5 +57,16 @@ class Post extends Model
     public function user() 
     {
         return $this->belongsTo(User::class);
+    }
+
+    // 投稿に紐づくタグを取得
+    // 中間テーブルの名前がLaravelの規約に沿っていない場合は、以下の情報を指定する必要がある
+    // 第1引数・・・リレーションを張る対象のモデル
+    // 第2引数・・・中間テーブルの名前
+    // 第3引数・・・関係を定義しているモデルの外部キー名（今回だとPostモデル）
+    // 第4引数・・・関連付けるモデルの外部キー名（今回だとTagモデル）
+    public function tags() 
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id'); 
     }
 }
