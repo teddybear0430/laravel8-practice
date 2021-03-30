@@ -8,6 +8,7 @@
         <div class="container">
             <ul>
               <li><a class="hover:text-blue-600" href="{{ route('posts.index') }}">投稿一覧</a></li>
+              <li><a class="hover:text-blue-600" href="{{ route('tags.index') }}">タグ一覧</a></li>
               <li><a class="hover:text-blue-600" href="{{ route('posts.create') }}">投稿の新規作成</a></li>
             </ul>
         </div>
