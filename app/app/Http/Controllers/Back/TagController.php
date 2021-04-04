@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 
 class TagController extends Controller
 {
@@ -24,10 +24,10 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     return view('back.tags.create');
-    // }
+    public function create()
+    {
+        return view('back.tags.create');
+    }
 
     /**
      * タグの保存処理
@@ -35,9 +35,17 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
-        //
+        $request->validated();
+
+        $tag = new Tag();
+
+        $tag->name = $request->name;
+        $tag->slug = $request->slug;
+        $tag->save();
+
+        return redirect()->route('dashboard')->with('flash_message', 'タグを保存しました');
     }
 
     /**
@@ -58,7 +66,7 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
         //
     }
