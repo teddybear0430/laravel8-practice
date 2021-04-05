@@ -26,5 +26,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('/posts', \App\Http\Controllers\Back\PostController::class)->except('show');
 
     // タグに関するルーティング
-    Route::resource('/tags', \App\Http\Controllers\Back\TagController::class)->except(['show']);
+    Route::resource('/tags', \App\Http\Controllers\Back\TagController::class)->except(['show', 'edit']);
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TagRequest extends FormRequest
 {
@@ -25,7 +26,13 @@ class TagRequest extends FormRequest
     {
         return [
             'name' => 'required|max:50',
-            'slug' => 'required|max:50|unique:tags,slug'
+            'slug' => [
+                'required',
+                'max:50',
+                // unique単体で指定すると、データの更新ができなくなるので、
+                // 同じレコードの更新を行う時は、除外IDを設定する
+                Rule::unique('tags')->ignore($this->tag)
+            ],
         ];
     }
 

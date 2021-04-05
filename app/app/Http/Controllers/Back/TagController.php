@@ -49,26 +49,23 @@ class TagController extends Controller
     }
 
     /**
-     * タグの編集
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit(Tag $tag)
-    // {
-    //     //
-    // }
-
-    /**
      * タグの更新
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(TagRequest $request, Tag $tag)
+    public function update(TagRequest $request, int $id)
     {
-        //
+        $request->validated();
+
+        $old_tag = Tag::where('id', $id)->findOrFail($id);
+
+        $old_tag->name = $request->name;
+        $old_tag->slug = $request->slug;
+        $old_tag->save();
+
+        return redirect()->route('tags.index')->with('flash_message', 'タグの更新を行いました');
     }
 
     /**
@@ -77,8 +74,11 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(int $id)
     {
-        //
+        $tag = Tag::where('id', $id)->findOrFail($id);
+        $tag->delete();
+
+        return redirect()->route('tags.index')->with('flash_message', 'タグの削除を行いました');
     }
 }
